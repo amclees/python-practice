@@ -1,5 +1,5 @@
 # West-coast map
-ADJACENCY_MAP = {
+STATES_MAP = {
     'WA': ['ID', 'OR'],
     'OR': ['WA', 'ID', 'NV', 'CA'],
     'CA': ['OR', 'NV', 'AZ'],
@@ -11,21 +11,28 @@ ADJACENCY_MAP = {
     'MT': ['ID', 'WY']
 }
 
-COLORS = ['red', 'blue', 'orange', 'purple']
+STATES_COLORS = ['red', 'blue', 'orange', 'purple']
 
-partitions = {}
-for color in COLORS:
-    partitions[color] = []
 
-for node, adjacents in ADJACENCY_MAP.items():
-    for color, nodes in partitions.items():
-        invalid_color = False
-        for adjacent in adjacents:
-            if adjacent in nodes:
-                invalid_color = True
+
+def partioned_graph(adjacency_map, colors):
+    partitions = {}
+    for color in colors:
+        partitions[color] = []
+
+    for node, adjacents in adjacency_map.items():
+        for color, nodes in partitions.items():
+            invalid_color = False
+            for adjacent in adjacents:
+                if adjacent in nodes:
+                    invalid_color = True
+                    break
+            if not invalid_color:
+                partitions[color].append(node)
                 break
-        if not invalid_color:
-            partitions[color].append(node)
-            break
 
-print(partitions)
+    return partitions
+
+
+
+print(partioned_graph(STATES_MAP, COLORS))
