@@ -13,7 +13,21 @@ STATES_MAP = {
 
 STATES_COLORS = ['red', 'blue', 'orange', 'purple']
 
+PETERSEN_MAP = {
+    1: [2, 3, 4],
+    2: [7, 8],
+    3: [1, 4, 9],
+    4: [5, 8],
+    5: [4, 6, 7],
+    6: [1, 5, 10],
+    7: [2, 5, 9],
+    8: [2, 4, 10],
+    9: [3, 7, 10],
+    10: [6, 8, 9]
+}
 
+# Non-greedy takes 3 colors
+PETERSEN_COLORS = ['red', 'blue', 'green', 'yellow']
 
 def partioned_graph(adjacency_map, colors):
     partitions = {}
@@ -35,4 +49,6 @@ def partioned_graph(adjacency_map, colors):
 
 
 
-print(partioned_graph(STATES_MAP, COLORS))
+print(partioned_graph(STATES_MAP, STATES_COLORS))
+
+print(partioned_graph(PETERSEN_MAP, PETERSEN_COLORS))
